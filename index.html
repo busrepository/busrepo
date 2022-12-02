@@ -1532,9 +1532,9 @@ var routes = [
                     imgIndexArr.splice(imgIndexArr.length - imgIndexArr.length/2,imgIndexArr.length);
                     console.log(imgIndexArr);
                     document.getElementById("busRoute").style.borderColor = "green";
-                    //for(var k=0;k<imgIndexArr.length;k++)
-                    //    str+="<br><br><img src="+imgArr[imgIndexArr[k]]+" alt=kbop style=height:200px;width:300px;>"; 
-                    //str+="<br><b>&#9658;Note:</b> Buses models shown here are just for reference only, actual bus may appear different, please look at the board or ask conductor before boarding.<br>";
+                    for(var k=0;k<imgIndexArr.length;k++)
+                        str+="<br><br><img src="+imgArr[imgIndexArr[k]]+" alt=kbop style=height:200px;width:300px;>"; 
+                    str+="<br><b>&#9658;Note:</b> Buses models shown here are just for reference only, actual bus may appear different, please look at the board or ask conductor before boarding.<br>";
                     document.getElementById("routeRes").innerHTML = "<br>"+str;
                 }
             }   
