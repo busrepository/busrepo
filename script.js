@@ -1,7 +1,7 @@
 /*************ALL PRAISE TO STACK OVERFLOW, W3 SCHOOLS**************/
 
 //to get the news updates
-var news= "Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>"; 
+var news= "Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>New route:EB12,E76,E77,D34"; 
 document.getElementById("update").innerHTML=news;  
 
 //get all the bus routes from routes.js
