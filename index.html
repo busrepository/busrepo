@@ -26,6 +26,7 @@
 </head>
 
 <link href="styles.css" rel="stylesheet"> 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
 <script src="routes1.js"></script>
 <script src="routes2.js"></script>  
@@ -80,22 +81,26 @@
             <label for="sel1">Select list (select one):</label>
             <select class="form-control" id="sel1" name="sellist1" onchange="loadRouteList()">
               <option value="1">Kolkata, Howrah, Hoogly, N & S 24 Pgns.</option>
-              <option value="2">NBSTC</option>
-              <option value="3">---Coming Soon---</option>
+              <option value="2">NBSTC & SBSTC</option>
+              <option value="3">Bardhaman</option>
               <option value="4">---Coming Soon---</option>
               <option value="4">---Coming Soon---</option>
             </select>
         </div>
     </div>
 <br>
-    <fieldset class="border p-2">
+    
         <legend class="float-none w-auto p-2"><mark style="background-color:yellow;">News!!!</mark></legend>
         <!--<div class="cssmarquee">
             <h5 id="update"></h5>
         </div>	-->
-        <h5 id="update"></h5>
+        <p class="item-1" id="news1">New route: EB12, E76, E77, D34</p>
+        <p class="item-2" id="news2">Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly</p>
+        <p class="item-3" id="news3">Route KB12, 3, 241 has only 1 bus running</p>
+        <!--<h5 id="update"></h5>-->
     </fieldset>    
-    <br>	
+    <br><br><br>
+    
     <fieldset class="border p-2">
         <legend class="float-none w-auto p-2"><h4>Search Buses by Source and Destination</h4></legend>
         <label for="cars">Select Source:</label>
@@ -134,7 +139,13 @@
     </fieldset>
     <br><br><input type="button" value="Reset All" id="Reset" onclick="reset()">
     <p>Thank you for using.</p>
-    <br><footer>For reporting any bugs or any suggestions, please mail us at <i>kolbusopedia@gmail.com</i></footer>
+    <h4>Get Connected!</h4>
+    <!-- Add font awesome icons -->
+    <a href="https://www.facebook.com/Kolbusopedia/" target="_blank" class="fa fa-facebook"></a>
+    <a href="https://twitter.com/KolBusoPedia?s=20&t=N33RGzMr9oeYmNRnTUs8yA" target="_blank" class="fa fa-twitter"></a>
+    <a href="https://www.youtube.com/@kolkatabus-o-pedia5377" target="_blank" class="fa fa-youtube"></a>
+    <a href="https://www.kooapp.com/profile/kolbusopedia" target="_blank" ><img src="https://images.squarespace-cdn.com/content/v1/584fbae3e6f2e1c321b372b8/1628850911874-X779V6OFN5GTU9SF7VQS/12.Koo_Bird_Circle_Yellow.png?format=1000w" style="border-radius:50%;height:3%;width:3%;"></a>
+    <br><footer>For reporting any bugs or any suggestions, please mail us at <a href="mailto:kolbusopedia@gmail.com"><i>kolbusopedia@gmail.com</i></a></footer>
     <br><div title="Now bus images are added in bus search, NBSTC & SBSTC added, minor bug fixes"><i>Ver 1.2</i>  <b>&#169; Developed by Kolkata Bus-O-Pedia</b></div> 
 </body>
 
