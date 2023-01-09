@@ -1,22 +1,26 @@
 /*************ALL PRAISE TO STACK OVERFLOW, W3 SCHOOLS**************/
 
-//to get the news updates
-//var news= "Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>"; 
-//document.getElementById("update").innerHTML=news;  
-
-//get all the bus routes from routes.js
+//get all the bus routes from routes[i].js
 var routes = [ ];
-
+//to get the news updates
+var news= "New route: EB12, E76, E77, D34<br>S-111 Howrah LakeRoad Mini closed<br>Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>"; 
+document.getElementById("update").innerHTML=news;  
 
 function loadRouteList() {
     if (document.getElementById("sel1").selectedIndex == "0") {
         routes = routes1;
         loadRoute();
+        //to get the news updates
+        var news= "New route: EB12, E76, E77, D34<br>S-111 Howrah Lake Road Mini closed<br>Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>"; 
+        document.getElementById("update").innerHTML=news;  
         alert("Routes Loaded");
     } 
     else if (document.getElementById("sel1").selectedIndex == "1") {
         routes = routes2;
         loadRoute();
+        //to get the news updates
+        var news= "<br>"; 
+        document.getElementById("update").innerHTML=news;  
         alert("Routes Loaded");
     } 
 }   
