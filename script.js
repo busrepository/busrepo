@@ -1,9 +1,17 @@
 /*************ALL PRAISE TO STACK OVERFLOW, W3 SCHOOLS**************/
-
+document.getElementById("src").focus();
+document.getElementById("src").blur();
+document.getElementById("des").focus();
+document.getElementById("des").blur();
+document.getElementById("busRoute").focus();
+document.getElementById("busRoute").blur();
+document.getElementById("loc").focus();
+document.getElementById("loc").blur();
+window.scrollTo(0, 0);
 //get all the bus routes from routes[i].js
 var routes = [ ];
 //to get the news updates
-var news= "New route: EB12, E76, E77, D34<br>S-111 Howrah LakeRoad Mini closed<br>Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>Gangasagar Special:HOWRAH to KAKDWIP LOT NO 8, via Amtala, Diamond Harbour, Kakdwip"; 
+var news= "New route: EB12, E76, E77, D34<br>S-111 Howrah LakeRoad Mini closed<br>Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>"; 
 document.getElementById("update").innerHTML=news;  
 
 function loadRouteList() {
@@ -11,7 +19,7 @@ function loadRouteList() {
         routes = routes1;
         loadRoute();
         //to get the news updates
-        var news= "New route: EB12, E76, E77, D34<br>S-111 Howrah Lake Road Mini closed<br>Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>Gangasagar Special:HOWRAH to KAKDWIP LOT NO 8, via Amtala, Diamond Harbour, Kakdwip"; 
+        var news= "New route: EB12, E76, E77, D34<br>S-111 Howrah Lake Road Mini closed<br>Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>"; 
         document.getElementById("update").innerHTML=news;  
         alert("Routes Loaded");
     } 
