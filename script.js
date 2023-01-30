@@ -3,7 +3,7 @@
 //get all the bus routes from routes[i].js
 var routes = [ ];
 //to get the news updates
-var news= "Kolkata Book Fair special bus <a href='https://www.facebook.com/Kolbusopedia/photos/a.438176566330497/2415169575297843/?type=3' target='_blank'>Check here</a><br>New route: EB12, E76, E77, D34<br>S-111 Howrah LakeRoad Mini closed<br>Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>"; 
+var news= news1;
 document.getElementById("update").innerHTML=news;  
 
 function loadRouteList() {
@@ -11,7 +11,7 @@ function loadRouteList() {
         routes = routes1;
         loadRoute();
         //to get the news updates
-        var news= "Kolkata Book Fair special bus <a href='https://www.facebook.com/Kolbusopedia/photos/a.438176566330497/2415169575297843/?type=3' target='_blank'>Check here</a><br>New route: EB12, E76, E77, D34<br>S-111 Howrah Lake Road Mini closed<br>Dankuni Kamalgazi back to old route, via Shyambazar Bonhoogly<br>"; 
+        var news= news1;
         document.getElementById("update").innerHTML=news;
         window.scrollTo(0, 0);  
         alert("Routes Loaded");
@@ -20,7 +20,7 @@ function loadRouteList() {
         routes = routes2;
         loadRoute();
         //to get the news updates
-        var news= "<br>"; 
+        var news= news2; 
         document.getElementById("update").innerHTML=news; 
         window.scrollTo(0, 0); 
         alert("Routes Loaded");
