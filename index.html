@@ -30,6 +30,7 @@
 
 <script src="routes1.js"></script>
 <script src="routes2.js"></script>  
+<script src="news.js"></script>
 
 <button id="myBtn" style="float:left">Help</button>
     <!-- The Modal -->
@@ -104,7 +105,7 @@
     <fieldset class="border p-2">
         <legend class="float-none w-auto p-2"><h4>Search Buses by Source and Destination</h4></legend>
         <label for="cars">Select Source:</label>
-            <input list="places" autocomplete="on" class="form-control" id="src" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
+            <input list="places" class="form-control" id="src" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
             <datalist id="places"></datalist>     
             <br><br>
         <div style="display:flex;justify-content:center;align-items:center;height:5px;"> 
@@ -112,7 +113,7 @@
         </div>
         <br>
         <label for="cars">Select Destination:</label>
-            <input list="places" autocomplete="on" class="form-control" id="des" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
+            <input list="places" class="form-control" id="des" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
             <datalist id="places"></datalist>     
         <br>
         <input type="button" value="Search for Buses" id="sd" onclick="sdSearch()">
@@ -121,8 +122,8 @@
     <br><br>
     <fieldset class="border p-2">
         <legend class="float-none w-auto p-2"><label for="exampleInputEmail1"><h4>Search a Bus Route</h4></label></legend>
-        <input list="buses" autocomplete="on" class="form-control" id="busRoute" aria-describedby="emailHelp" placeholder="Type a Bus Number or Name,e.g.,30C/1,KB21,Barasat Baruipur" onfocus="noGlow(this.id)">
-        <datalist id="buses"></datalist>     
+        <input list="buses" minlength="3" class="form-control" id="busRoute" aria-describedby="emailHelp" placeholder="Type a Bus Number or Name,e.g.,30C/1,KB21,Barasat Baruipur" onfocus="noGlow(this.id)">
+        <datalist id="buses"><option>---</option></datalist>     
         <br>
         <input type="button" value="Search Bus" id="busSearch" onclick="routeSearch()"> <!-- <input type="button" value="Reset" id="BusReset"> -->
         <br><p id = "routeRes"></p>
@@ -131,7 +132,7 @@
     <fieldset class="border p-2">
         <legend class="float-none w-auto p-2"><label for="exampleInputEmail1"><h4>Search Buses for a location</h4></label></legend>
          <br>
-        <input list="places" autocomplete="on" class="form-control" id="loc" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
+        <input list="places" class="form-control" id="loc" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
         <datalist id="places"></datalist>     
         <br>
         <input type="button" value="Search Location" id="locSearch" onclick="locSearch()"> <!-- <input type="button" value="Reset" id="LocReset"> -->
