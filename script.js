@@ -85,6 +85,7 @@ function loadRoute() {
     let uniquePlace = placeList.filter((c, index) => {
         return placeList.indexOf(c) === index;
     });   
+    uniquePlace.push("Bidhannagar Road","Exide More","Dharmatala");
     uniquePlace.sort();
     console.log(uniquePlace);
     var options2 = '';
@@ -94,6 +95,23 @@ function loadRoute() {
 
     //document.write(uniquePlace);
 }    
+
+function replaceLocAlias(loc){
+    if(loc==="bidhannagar road"){
+        loc = "Ultadanga";
+        return loc;
+    }
+    else if(loc==="exide more"){
+        loc = "Rabindra Sadan";
+        return loc;
+    }    
+    else if(loc==="dharmatala"){    
+        loc = "Esplanade";
+        return loc;
+    }
+    else
+        return loc;
+}
 
 //to load kolkata zone at first load
 routes = routes1;
@@ -154,7 +172,8 @@ function routeSearch() {
 //search as per location
 function locSearch() {
     document.getElementById("loc").style.borderWidth = "medium";
-    var loc=document.getElementById("loc").value.trim();
+    var loc=document.getElementById("loc").value.trim().toLowerCase();
+    loc = replaceLocAlias(loc);
     if(loc==="") {
         document.getElementById("locRes").innerHTML="<br>No location entered.";
         document.getElementById("loc").style.borderColor = "red";
@@ -218,6 +237,8 @@ function sdSearch() {
     document.getElementById("des").style.borderWidth = "medium";
     var src=document.getElementById("src").value.trim().toLowerCase();
     var des=document.getElementById("des").value.trim().toLowerCase();
+    src=replaceLocAlias(src);
+    des=replaceLocAlias(des);
     if(src==="" || des==="") {
         document.getElementById("sdRes").innerHTML="<br>Enter both source and destination location";
         if (src ==="")
