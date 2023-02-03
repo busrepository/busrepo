@@ -85,7 +85,7 @@ function loadRoute() {
     let uniquePlace = placeList.filter((c, index) => {
         return placeList.indexOf(c) === index;
     });   
-    uniquePlace.push("Bidhannagar Road","Exide More","Dharmatala");
+    uniquePlace.push("Bidhannagar Road","Exide More","Dharmatala","Sector V");
     uniquePlace.sort();
     console.log(uniquePlace);
     var options2 = '';
@@ -107,6 +107,10 @@ function replaceLocAlias(loc){
     }    
     else if(loc==="dharmatala"){    
         loc = "Esplanade";
+        return loc;
+    }
+    else if(loc==="sector v"){    
+        loc = "College More";
         return loc;
     }
     else
