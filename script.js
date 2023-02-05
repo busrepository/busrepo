@@ -2,14 +2,25 @@
 
 //get all the bus routes from routes[i].js
 var routes = [ ];
-//to get the news updates
-var news= news1;
-document.getElementById("update").innerHTML=news;  
+var arr = [ ];
+var imgArr = [ ];
+var imgArrTemp = [ ];
+var uniquePlace = [ ];
 
+//to load kolkata zone at first load by default
+routes = routes1;
+loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V"); //additional extra place names, which have different names but same location, pass them as argument 
+var news= news1;
+document.getElementById("update").innerHTML=news;  //load news
+window.scrollTo(0, 0); 
+
+/********ALL FUNCTIONS******/
+
+//load a route on zone selection, this method is triggered onchange zone select event
 function loadRouteList() {
     if (document.getElementById("sel1").selectedIndex == "0") {
         routes = routes1;
-        loadRoute();
+        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V"); //additional extra place names, which have different names but same location, pass them as argument 
         //to get the news updates
         var news= news1;
         document.getElementById("update").innerHTML=news;
@@ -28,9 +39,6 @@ function loadRouteList() {
 }   
 
 
-var arr = [ ];
-var imgArr = [ ];
-var imgArrTemp = [ ];
 function loadRoute() {    
     arr = [ ];
     imgArr = [ ];
@@ -72,6 +80,7 @@ function loadRoute() {
         return busList.indexOf(c) === index;
     });   
     console.log(uniqueRoute);
+    //add the routes into datalist options
     var options1 = '';
     for (var i = 0; i < uniqueRoute.length; i++) 
         options1 += '<option value="' + uniqueRoute[i] + '" />';
@@ -82,20 +91,26 @@ function loadRoute() {
     for(var i=0;i<routes.length;i++) 
         for(var j=2;j<viaArray.length;j++)
             placeList.push(arr[i][j]);        
-    let uniquePlace = placeList.filter((c, index) => {
+    uniquePlace = placeList.filter((c, index) => {
         return placeList.indexOf(c) === index;
     });   
-    uniquePlace.push("Bidhannagar Road","Exide More","Dharmatala","Sector V");
+    //add the additional extra place names, which have different names but same location, into uniquePlace array  
+    for(var i=0;i<arguments.length;i++){
+        //console.log(arguments[i]);
+        uniquePlace.push(arguments[i]);
+    }    
+
     uniquePlace.sort();
     console.log(uniquePlace);
+    //add the places into datalist options
     var options2 = '';
     for (var i = 0; i < uniquePlace.length; i++) 
         options2 += '<option value="' + uniquePlace[i] + '" />';
     document.getElementById('places').innerHTML = options2;
-
     //document.write(uniquePlace);
 }    
 
+//function to check same location with different names cases
 function replaceLocAlias(loc){
     if(loc==="bidhannagar road"){
         loc = "Ultadanga";
@@ -116,11 +131,6 @@ function replaceLocAlias(loc){
     else
         return loc;
 }
-
-//to load kolkata zone at first load
-routes = routes1;
-loadRoute();
-window.scrollTo(0, 0); 
 
 
 //function to search bus, as per bus route no
@@ -388,6 +398,7 @@ function reset(){
     
 }
 
+//night/day mode switch function
 var lightFlag=1;
 function lightdark(){
     if(lightFlag) {
