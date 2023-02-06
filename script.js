@@ -9,7 +9,7 @@ var uniquePlace = [ ];
 
 //to load kolkata zone at first load by default
 routes = routes1;
-loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V"); //additional extra place names, which have different names but same location, pass them as argument 
+loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate"); //additional extra place names, which have different names but same location, pass them as argument 
 var news= news1;
 document.getElementById("update").innerHTML=news;  //load news
 window.scrollTo(0, 0); 
@@ -20,7 +20,7 @@ window.scrollTo(0, 0);
 function loadRouteList() {
     if (document.getElementById("sel1").selectedIndex == "0") {
         routes = routes1;
-        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V"); //additional extra place names, which have different names but same location, pass them as argument 
+        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate"); //additional extra place names, which have different names but same location, pass them as argument 
         //to get the news updates
         var news= news1;
         document.getElementById("update").innerHTML=news;
@@ -126,6 +126,22 @@ function replaceLocAlias(loc){
     }
     else if(loc==="sector v"){    
         loc = "College More";
+        return loc;
+    }
+    else if(loc==="biswa bangla gate"){    
+        loc = "Narkelbagan";
+        return loc;
+    }
+    else if(loc==="mint"){    
+        loc = "Mominpore";
+        return loc;
+    }
+    else if(loc==="yuva bharati kirangan"){    
+        loc = "Saltlake Stadium";
+        return loc;
+    }
+    else if(loc==="cmri hospital"){    
+        loc = "Ekbalpur";
         return loc;
     }
     else
