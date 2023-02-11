@@ -36,6 +36,15 @@ function loadRouteList() {
         window.scrollTo(0, 0); 
         alert("Routes Loaded");
     } 
+    else if (document.getElementById("sel1").selectedIndex == "2") {
+        routes = routes3;
+        loadRoute();
+        //to get the news updates
+        var news= news2; 
+        document.getElementById("update").innerHTML=news; 
+        window.scrollTo(0, 0); 
+        alert("Routes Loaded");
+    } 
 }   
 
 
