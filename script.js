@@ -32,7 +32,7 @@ function loadRouteList() {
     //NBSTC
     else if (document.getElementById("sel1").selectedIndex == "1") {
         routes = routes2;
-        loadRoute("Bidhannagar Road");
+        loadRoute("Dharmatala","Bidhannagar Road");
         //to get the news updates
         var news= news2; 
         document.getElementById("update").innerHTML=news; 
