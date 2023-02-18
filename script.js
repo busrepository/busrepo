@@ -9,7 +9,7 @@ var uniquePlace = [ ];
 
 //to load kolkata zone at first load by default
 routes = routes1;
-loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate"); //additional extra place names, which have different names but same location, pass them as argument 
+loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt"); //additional extra place names, which have different names but same location, pass them as argument 
 var news= news1;
 document.getElementById("update").innerHTML=news;  //load news
 window.scrollTo(0, 0); 
@@ -18,29 +18,33 @@ window.scrollTo(0, 0);
 
 //load a route on zone selection, this method is triggered onchange zone select event
 function loadRouteList() {
+    //kol,hwh,24pgns,hoogly
     if (document.getElementById("sel1").selectedIndex == "0") {
         routes = routes1;
-        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate"); //additional extra place names, which have different names but same location, pass them as argument 
+        //additional extra place names, which have different names but same location, pass them as argument in loadRoute function
+        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Hyatt","Biswa Bangla Gate"); 
         //to get the news updates
         var news= news1;
         document.getElementById("update").innerHTML=news;
         window.scrollTo(0, 0);  
         alert("Routes Loaded");
     } 
+    //NBSTC
     else if (document.getElementById("sel1").selectedIndex == "1") {
         routes = routes2;
-        loadRoute();
+        loadRoute("Bidhannagar Road");
         //to get the news updates
         var news= news2; 
         document.getElementById("update").innerHTML=news; 
         window.scrollTo(0, 0); 
         alert("Routes Loaded");
     } 
+    //SBSTC
     else if (document.getElementById("sel1").selectedIndex == "2") {
         routes = routes3;
-        loadRoute();
+        loadRoute("Dharmatala","Bidhannagar Road");
         //to get the news updates
-        var news= news2; 
+        var news= news3; 
         document.getElementById("update").innerHTML=news; 
         window.scrollTo(0, 0); 
         alert("Routes Loaded");
@@ -145,7 +149,7 @@ function replaceLocAlias(loc){
         loc = "Mominpore";
         return loc;
     }
-    else if(loc==="yuva bharati kirangan"){    
+    else if(loc==="yuva bharati kirangan" || loc==="hyatt"){    
         loc = "Saltlake Stadium";
         return loc;
     }
