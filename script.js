@@ -9,7 +9,7 @@ var uniquePlace = [ ];
 
 //to load kolkata zone at first load by default
 routes = routes1;
-loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt"); //additional extra place names, which have different names but same location, pass them as argument 
+loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt","TCS Gitobitan","Panihati"); //additional extra place names, which have different names but same location, pass them as argument 
 var news= news1;
 document.getElementById("update").innerHTML=news;  //load news
 window.scrollTo(0, 0); 
@@ -22,11 +22,12 @@ function loadRouteList() {
     if (document.getElementById("sel1").selectedIndex == "0") {
         routes = routes1;
         //additional extra place names, which have different names but same location, pass them as argument in loadRoute function
-        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Hyatt","Biswa Bangla Gate"); 
+        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt","TCS Gitobitan","Panihati"); 
         //to get the news updates
         var news= news1;
         document.getElementById("update").innerHTML=news;
-        window.scrollTo(0, 0);  
+        window.scrollTo(0, 0); 
+        reset(); 
         alert("Routes Loaded");
     } 
     //NBSTC
@@ -37,6 +38,7 @@ function loadRouteList() {
         var news= news2; 
         document.getElementById("update").innerHTML=news; 
         window.scrollTo(0, 0); 
+        reset();
         alert("Routes Loaded");
     } 
     //SBSTC
@@ -47,6 +49,7 @@ function loadRouteList() {
         var news= news3; 
         document.getElementById("update").innerHTML=news; 
         window.scrollTo(0, 0); 
+        reset();
         alert("Routes Loaded");
     } 
 }   
@@ -155,6 +158,14 @@ function replaceLocAlias(loc){
     }
     else if(loc==="cmri hospital"){    
         loc = "Ekbalpur";
+        return loc;
+    }
+    else if(loc==="tcs gitobitan"){    
+        loc = "Wipro More";
+        return loc;
+    }
+    else if(loc==="panihati"){    
+        loc = "Ghola Bazar";
         return loc;
     }
     else
