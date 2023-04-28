@@ -6,6 +6,10 @@ var arr = [ ];
 var imgArr = [ ];
 var imgArrTemp = [ ];
 var uniquePlace = [ ];
+//for timetable
+var timeArr = [ ];
+var busNames = [ ];
+var busTimes = [ ];
 
 //to load kolkata zone at first load by default
 routes = routes1;
@@ -21,6 +25,7 @@ function loadRouteList() {
     //kol,hwh,24pgns,hoogly
     if (document.getElementById("sel1").selectedIndex == "0") {
         routes = routes1;
+        timeArr = time1;
         //additional extra place names, which have different names but same location, pass them as argument in loadRoute function
         loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt","TCS Gitobitan","Panihati"); 
         //to get the news updates
@@ -33,6 +38,7 @@ function loadRouteList() {
     //NBSTC
     else if (document.getElementById("sel1").selectedIndex == "1") {
         routes = routes2;
+        timeArr = time2;
         loadRoute("Dharmatala","Bidhannagar Road");
         //to get the news updates
         var news= news2; 
@@ -44,6 +50,7 @@ function loadRouteList() {
     //SBSTC
     else if (document.getElementById("sel1").selectedIndex == "2") {
         routes = routes3;
+        timeArr = time3;
         loadRoute("Dharmatala","Bidhannagar Road");
         //to get the news updates
         var news= news3; 
@@ -124,6 +131,23 @@ function loadRoute() {
         options2 += '<option value="' + uniquePlace[i] + '" />';
     document.getElementById('places').innerHTML = options2;
     //document.write(uniquePlace);
+
+    //form the time array
+    for(var i=0;i<timeArr.length;i++) {
+        //regex to extract bus and times 
+        var regexp = /(^[A-Z0-9a-z.\/\-\s,\(\)]*?)\s*;\s*(.*)/g;
+        var matches = Array.from(timeArr[i].matchAll(regexp));
+        //console.log(matches[0][1]);    //2d array, i value should always be 0
+        busNames[i]=matches[0][1]; //bus name
+        busTimes[i]=matches[0][2]; //bus time
+    }
+    //add the bus names into datalist options
+    var options3 = '';
+    for (var i = 0; i < busNames.length; i++) 
+        options3 += '<option value="' + busNames[i] + '" />';
+    document.getElementById('timeList').innerHTML = options3;
+    console.log(busNames);
+    console.log(busTimes);
 }    
 
 //function to check same location with different names cases
@@ -221,6 +245,39 @@ function routeSearch() {
         }
     }   
 }  
+
+//search time
+function timeSearch() {
+    document.getElementById("time").style.borderWidth = "medium";
+    if(document.getElementById("time").value==="") {
+        document.getElementById("timeRes").innerHTML = "<br>No routes number entered";
+        document.getElementById("time").style.borderColor = "red";
+    }
+    else {
+        document.getElementById("time").style.borderStyle = "solid";
+        var time=document.getElementById("time").value.trim();
+        var str="";
+        for(var i=0;i<timeArr.length;i++) {
+            //absolute check by === , case insensitive search, add bus route numbers/names to the string str when match occurs 
+            if( (time.toLowerCase()===busNames[i].toLowerCase())  || (time.toLowerCase()===busNames[i].replace('-', '').toLowerCase()) ) {
+                //autocorrect if not properly entered
+                if ( time.toLowerCase()!=busNames[i].toLowerCase() ) 
+                    document.getElementById("time").value=busNames[i];
+                str+="<b>"+busNames[i]+"</b> : "+busTimes[i];
+            }
+        }
+        if(str==="") {
+            document.getElementById("time").style.borderColor = "red";
+            document.getElementById("timeRes").innerHTML = "<br>No such routes found";        
+        }
+        else {
+            document.getElementById("time").style.borderColor = "green";
+            str+="<br><br><b>&#9658;Note:</b>Times are in 24hrs format. Times may vary due to various reasons, please contact SBSTC Depot helpline before availing.<br>";
+            //str+="<br><b>&#9658;Note:</b> Buses models shown here are just for reference only, actual bus may appear different, please look at the board or ask conductor before boarding.<br>";
+            document.getElementById("timeRes").innerHTML = "<br>"+str;
+        }
+    }   
+}
 
 
 //search as per location
@@ -435,7 +492,10 @@ function reset(){
     document.getElementById("des").style.borderWidth = "thin";
     document.getElementById("src").style.borderColor = "black";
     document.getElementById("des").style.borderColor = "black";
-    
+    document.getElementById("time").value="";
+    document.getElementById("time").style.borderWidth = "thin";
+    document.getElementById("time").style.borderColor = "black";
+    document.getElementById("timeRes").innerHTML="";
 }
 
 //night/day mode switch function
@@ -452,6 +512,8 @@ function lightdark(){
         document.getElementById("src").style.color= "white";
         document.getElementById("des").style.color= "white";
         document.getElementById("loc").style.color= "white";
+        document.getElementById("time").style.color= "white";
+        document.getElementById("time").style.backgroundColor= "#757575";
         document.getElementById("busRoute").style.color= "white";
         document.getElementsByClassName("modal-content")[0].style.backgroundColor="#585858";
         lightFlag=0;
@@ -467,6 +529,8 @@ function lightdark(){
         document.getElementById("src").style.color= "black";
         document.getElementById("des").style.color= "black";
         document.getElementById("loc").style.color= "black";
+        document.getElementById("time").style.color= "black";
+        document.getElementById("time").style.backgroundColor= "white";
         document.getElementById("busRoute").style.color= "black";
         document.getElementsByClassName("modal-content")[0].style.backgroundColor="white";
         lightFlag=1;
