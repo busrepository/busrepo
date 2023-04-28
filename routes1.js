@@ -1269,3 +1269,7 @@ var routes1 = [
     "BE-12:(WBTC) Purulia to Kolkata [via:Purulia, Anara, Raghunathpur, Nituria, Parbelia, Dishergarh, Neamatpur, Asansol, Raniganj, Durgapur City Center, Panagarh, Burdwan, Durgapur Expressway, Dankuni Housing, Santragachi, Esplanade] ",
     "ACS-3:(WBTC) Bakkhali to Kolkata [via:Bakkhali, Amrabati, Frazerganj, 10 Mile Bazar, Sibanagar, Narayanpur, Namkhana Station, Ukilerhat, Kakdwip Bus Stand, Kakdwip Station, Natun Rastar More, ONGC More, Nischintipur, Karanjali, Kulpi, Hatuganj, Diamond Harbour, Noongola, Leninnagar, Kapathat, Mohanpur, Kalagachia, Sarisha More, Dostipur, Fatehpur, Shirakole, Amtala, Bishnupur, Khariberia, Bhasha 14no., Pailan, Joka Bridge, Thakurpukur, Shilpara, Sakher Bazar, Behala Chowrasta, Behala 14no., Majherhat, Burdwan Road, Bhabani Bhawan, Alipore Zoo, PTS More, Fort William, Esplanade] "    
 ]; 
+
+var time1 = [
+    "Coming Soon;Coming Soon"
+];
