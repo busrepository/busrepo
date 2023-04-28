@@ -57,3 +57,7 @@ var routes2 = [
 "Kolkata to Alipurduar :(NBSTC) Alipurduar to Kolkata [via:Alipurduar, Cooch Behar, Pundibari, Mathurabagan, Falakata, Salbari, Dhupguri, Mainaguri Bypass, Jalpaiguri Bypass, Fatapukur, Fulbari, Siliguri, Islampur, Dalkhola, Raiganj, Itahar, Gazole, Malda, Farakka, Omarpur, Morgram, Barasat, Ultadanga, Esplanade] "
 //"Kolkata to Jaigaon :(NBSTC) Jaigaon to Kolkata [via:Jaigaon, Hasimara, Alipurduar, Mathurabagan, Falakata, Jateshwar, Gairkata, Dhupguri, Mainaguri Bypass, Jalpaiguri Bypass, Fatapukur, Fulbari, Siliguri, Islampur, Kishanganj, Dalkhola, Raiganj, Itahar, Gazole, Malda, Farakka, Omarpur, Morgram, Palsanda, Berhampore, Beldanga, Rejinagar, Palashi, Debagram, Bethuadahari, Dhubulia, Krishnanagar, Shantipur, Phulia, Ranaghat, Chakdah, Barasat, Airport, Esplanade] "
 ];
+
+var time2 = [
+    "Coming Soon;Coming Soon"
+];
