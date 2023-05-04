@@ -13,6 +13,7 @@ var busTimes = [ ];
 
 //to load kolkata zone at first load by default
 routes = routes1;
+timeArr = time1;
 loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt","TCS Gitobitan","Panihati"); //additional extra place names, which have different names but same location, pass them as argument 
 var news= news1;
 document.getElementById("update").innerHTML=news;  //load news
