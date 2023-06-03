@@ -162,3 +162,7 @@ color: white;
   74.96%, 91.62% { left: 25%; opacity: 1; }
   100% { left: 110%; opacity: 0; }
 }
+
+table, th, td {
+    border:1px solid black;
+  }
