@@ -105,7 +105,7 @@
     <br><br><br>
     
     <fieldset class="border p-2">
-        <legend class="float-none w-auto p-2"><h4><img src="dir.jpg" style="height:25px;width:25px;">Search Buses by Source and Destination<img src="dir.jpg" style="height:25px;width:25px;"></h4></legend>
+        <legend class="float-none w-auto p-2"><h4><img src="dir.jpg" style="height:25px;width:35px;">Search Buses by Source and Destination<img src="dir.jpg" style="height:25px;width:35px;"></h4></legend>
         <label for="cars">Select Source:</label>
             <input list="places" class="form-control" id="src" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
             <datalist id="places"></datalist>     
@@ -123,7 +123,7 @@
     </fieldset>  
     <br><br>
     <fieldset class="border p-2">
-        <legend class="float-none w-auto p-2"><label for="exampleInputEmail1"><h4><img src="bus.jpg" style="height:25px;width:25px;">Search a Bus Route<img src="bus.jpg" style="height:25px;width:25px;"></h4></label></legend>
+        <legend class="float-none w-auto p-2"><label for="exampleInputEmail1"><h4><i class="fa fa-bus" style="font-size:24px"></i>Search a Bus Route<i class="fa fa-bus" style="font-size:24px"></i></h4></label></legend>
         <input list="buses" minlength="3" class="form-control" id="busRoute" aria-describedby="emailHelp" placeholder="Type a Bus Number or Name,e.g.,30C/1,KB21,Barasat Baruipur" onfocus="noGlow(this.id)">
         <datalist id="buses"><option>---</option></datalist>     
         <br>
@@ -132,7 +132,7 @@
     </fieldset>
     <br><br>
     <fieldset class="border p-2">
-        <legend class="float-none w-auto p-2"><label for="exampleInputEmail1"><h4><img src="loc.jpg" style="height:25px;width:25px;">Search Buses for a location<img src="loc.jpg" style="height:25px;width:25px;"></h4></label></legend>
+        <legend class="float-none w-auto p-2"><label for="exampleInputEmail1"><h4><i class='fa fa-map-marker' style='font-size:24px'></i>Search Buses for a location<i class='fa fa-map-marker' style='font-size:24px'></i></h4></label></legend>
          <br>
         <input list="places" class="form-control" id="loc" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
         <datalist id="places"></datalist>     
@@ -141,15 +141,15 @@
         <br><p id = "locRes"></p>
     </fieldset>
     <br><br>
-    <fieldset class="border p-2">
+<!--    <fieldset class="border p-2">
         <legend class="float-none w-auto p-2"><label for="exampleInputEmail1"><h4>Search Buses for TimeTable</h4></label></legend>
         <br>
         <input list="timeList" class="form-control" id="time" aria-describedby="emailHelp" placeholder="Type a bus name, e.g.,ACT-5,Kolkata to Bakkhali" onfocus="noGlow(this.id)">
         <datalist id="timeList"></datalist>     
         <br>
-        <input type="button" value="Search Time" id="timeSearch" onclick="timeSearch()"> <!-- <input type="button" value="Reset" id="LocReset"> -->
+        <input type="button" value="Search Time" id="timeSearch" onclick="timeSearch()">  <input type="button" value="Reset" id="LocReset"> 
         <br><p id = "timeRes"></p>
-    </fieldset>
+    </fieldset> -->
     <br><br><input type="button" value="Reset All" id="Reset" onclick="reset()">
     <p>Thank you for using.</p>
     <h4>Get Connected!</h4>
@@ -160,7 +160,7 @@
     <a href="https://www.instagram.com/kolbusopedia/?hl=en" target="_blank" class="fa fa-instagram"></a>
     <a href="https://www.kooapp.com/profile/kolbusopedia" target="_blank" ><img class="img-fluid" src="https://images.squarespace-cdn.com/content/v1/584fbae3e6f2e1c321b372b8/1628850911874-X779V6OFN5GTU9SF7VQS/12.Koo_Bird_Circle_Yellow.png?format=1000w" style="border-radius:50%;height:3%;width:3%;"></a>
     <br><footer>For reporting any bugs or any suggestions, please mail us at <a href="mailto:kolbusopedia@gmail.com"><i>kolbusopedia@gmail.com</i></a></footer>
-    <br><div title="Now bus images are added in bus search, NBSTC & SBSTC added, alias places adding, Timing are adding"><i>Ver 1.4</i>  <b>&#169; Developed by Kolkata Bus-O-Pedia</b></div> 
+    <br><div title="Now bus images are added in bus search, NBSTC & SBSTC added, alias places adding, Timing are adding"><i>Ver 1.5</i>  <b>&#169; Developed by Kolkata Bus-O-Pedia</b></div> 
 </body>
 
     <script src="script.js"></script>
