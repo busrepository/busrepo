@@ -211,13 +211,19 @@ function routeSearch() {
         var str="";
         var imgIndexArr = [ ];
         var Index=0;
+        var str_flag=0;
         for(var i=0;i<arr.length;i++) {
             //absolute check by === , case insensitive search, add bus route numbers/names to the string str when match occurs 
             if( (busRoute.toLowerCase()===arr[i][0].toLowerCase())  || (busRoute.toLowerCase()===arr[i][0].replace('-', '').toLowerCase()) ) {
                 //autocorrect if not properly entered
                 if ( busRoute.toLowerCase()!=arr[i][0].toLowerCase() ) 
-                    document.getElementById("busRoute").value=arr[i][0];
-                str+="<b>"+arr[i][0]+" : "+arr[i][1]+"</b> : ";
+                    document.getElementById("busRoute").value=arr[i][0];    
+                if(str_flag==0) {
+                    str+="<h3>"+arr[i][0]+" :</h3><table><tr><th>Via:</th><td><b>"+arr[i][1]+":</b>";
+                    str_flag = 1;
+                } else 
+                    str+="<tr><th>Via:</th><td><b>"+arr[i][1]+":</b>";   
+                
                 for(var j=2;j<arr[i].length;j++) {
                     if(j==arr[i].length-1) {
                         str+=arr[i][j];
@@ -226,7 +232,7 @@ function routeSearch() {
                     else
                         str+=arr[i][j]+"->";
                 }        
-                str+="<br><br>";    
+                str+="</td></tr>";    
             }
         }
         if(str==="") {
@@ -234,14 +240,13 @@ function routeSearch() {
             document.getElementById("routeRes").innerHTML = "<br>No such routes found";        
         }
         else {
-            str+="<br><b>&#9658;Note:</b>Buses may divert routes in unusual cases like traffic block, short termination, etc. Please ask conductor before boarding.<br>";
-            //console.log(imgArr.length);
+           //console.log(imgArr.length);
             imgIndexArr.splice(imgIndexArr.length - imgIndexArr.length/2,imgIndexArr.length);
             console.log(imgIndexArr);
             document.getElementById("busRoute").style.borderColor = "green";
             for(var k=0;k<imgIndexArr.length;k++)
-                str+="<br><br><img src="+imgArr[imgIndexArr[k]]+" alt=kbop style=height:200px;width:300px;>"; 
-            str+="<br><b>&#9658;Note:</b> Buses models shown here are just for reference only, actual bus may appear different, please look at the board or ask conductor before boarding.<br>";
+                str+="<tr><th>Image:</th><td><img src="+imgArr[imgIndexArr[k]]+" alt=kbop style=height:200px;width:300px;></td></tr>"; 
+            str+="<tr><th>Note</th><td> Buses models shown here are just for reference only, actual bus may appear different, please look at the board or ask conductor before boarding.<br>Buses may divert routes in unusual cases like traffic block, short termination, etc. Please ask conductor before boarding.</td></tr></table>";
             document.getElementById("routeRes").innerHTML = "<br>"+str;
         }
     }   
