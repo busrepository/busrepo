@@ -219,7 +219,7 @@ function routeSearch() {
                 if ( busRoute.toLowerCase()!=arr[i][0].toLowerCase() ) 
                     document.getElementById("busRoute").value=arr[i][0];    
                 if(str_flag==0) {
-                    str+="<h3>"+arr[i][0]+" :</h3><table><tr><th>Via:</th><td><b>"+arr[i][1]+":</b>";
+                    str+="<h3>"+arr[i][0]+" :</h3><table class='table table-bordered'><tr><th>Via:</th><td><b>"+arr[i][1]+":</b>";
                     str_flag = 1;
                 } else 
                     str+="<tr><th>Via:</th><td><b>"+arr[i][1]+":</b>";   
