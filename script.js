@@ -104,6 +104,7 @@ function loadRoute() {
         return busList.indexOf(c) === index;
     });   
     console.log(uniqueRoute);
+    //document.write(uniqueRoute);
     //add the routes into datalist options
     var options1 = '';
     for (var i = 0; i < uniqueRoute.length; i++) 
@@ -219,7 +220,7 @@ function routeSearch() {
                 if ( busRoute.toLowerCase()!=arr[i][0].toLowerCase() ) 
                     document.getElementById("busRoute").value=arr[i][0];    
                 if(str_flag==0) {
-                    str+="<h3>"+arr[i][0]+" :</h3><table class='table table-bordered'><tr><th>Via:</th><td><b>"+arr[i][1]+":</b>";
+                    str+="<h3>"+arr[i][0]+" :</h3><table><tr><th>Via:</th><td><b>"+arr[i][1]+":</b>";
                     str_flag = 1;
                 } else 
                     str+="<tr><th>Via:</th><td><b>"+arr[i][1]+":</b>";   
@@ -246,6 +247,7 @@ function routeSearch() {
             document.getElementById("busRoute").style.borderColor = "green";
             for(var k=0;k<imgIndexArr.length;k++)
                 str+="<tr><th>Image:</th><td><img src="+imgArr[imgIndexArr[k]]+" alt=kbop style=height:200px;width:300px;></td></tr>"; 
+            //----TODO----//
             str+="<tr><th>Timings</th><td>Coming Soon</td></tr>";
             str+="<tr><th>Note</th><td> Buses models shown here are just for reference only, actual bus may appear different, please look at the board or ask conductor before boarding.<br>Buses may divert routes in unusual cases like traffic block, short termination, etc. Please ask conductor before boarding.</td></tr></table>";
             document.getElementById("routeRes").innerHTML = "<br>"+str;
@@ -339,7 +341,7 @@ function locSearch() {
                 else    
                     str+=uniqueChars[i]+", ";   
             } 
-            document.getElementById("locRes").innerHTML="<br>"+str+"<br><br><b>&#9658;Note:</b>There might be many location with same name. Search for the entire bus route to clarify your desired location.<br>";
+            document.getElementById("locRes").innerHTML="<br><b>Avaible buses: </b>"+str+"<br><br><b>&#9658;Note:</b>There might be many location with same name. Search for the entire bus route to clarify your desired location.<br>";
             document.getElementById("loc").style.borderColor = "green";
         }
         else  {
@@ -447,7 +449,8 @@ function sdSearch() {
                     str+=busArray[i]+". ";
                 else    
                     str+=busArray[i]+", ";   
-            } 
+            }
+            str = "<b>Avaible buses:</b> " + str; 
             document.getElementById("sdRes").innerHTML="<br>"+str;
             document.getElementById("src").style.borderColor = "green";
             document.getElementById("des").style.borderColor = "green";
