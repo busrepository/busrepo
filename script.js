@@ -341,7 +341,7 @@ function locSearch() {
                 else    
                     str+=uniqueChars[i]+", ";   
             } 
-            document.getElementById("locRes").innerHTML="<br><b>Avaible buses: </b>"+str+"<br><br><b>&#9658;Note:</b>There might be many location with same name. Search for the entire bus route to clarify your desired location.<br>";
+            document.getElementById("locRes").innerHTML="<br><b>Available buses: </b>"+str+"<br><br><b>&#9658;Note:</b>There might be many location with same name. Search for the entire bus route to clarify your desired location.<br>";
             document.getElementById("loc").style.borderColor = "green";
         }
         else  {
@@ -450,7 +450,7 @@ function sdSearch() {
                 else    
                     str+=busArray[i]+", ";   
             }
-            str = "<b>Avaible buses:</b> " + str; 
+            str = "<b>Available buses:</b> " + str; 
             document.getElementById("sdRes").innerHTML="<br>"+str;
             document.getElementById("src").style.borderColor = "green";
             document.getElementById("des").style.borderColor = "green";
