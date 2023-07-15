@@ -6,10 +6,8 @@ var arr = [ ];
 var imgArr = [ ];
 var imgArrTemp = [ ];
 var uniquePlace = [ ];
-/* //for timetable
+//for timetable
 var timeArr = [ ];
-var busNames = [ ];
-var busTimes = [ ]; */
 
 //to load kolkata zone at first load by default
 routes = routes1;
@@ -67,15 +65,17 @@ function loadRoute() {
     arr = [ ];
     imgArr = [ ];
     imgArrTemp = [ ];
+    timeArr = [ ];
     for(var i=0;i<routes.length;i++) {
         arr[i] = [ ];
         //regex to extract routes and bus 
-        var regexp = /(^[A-Z0-9a-z.\/\-\s]*?)\s*:\s*([a-zA-Z0-9()._\-\/ ]*?)\s*\[\s*via\s*:\s*(.*?)\s*\]\s|(.*?\S+)/g;
+        var regexp = /(^[A-Z0-9a-z.\/\-\s]*?)\s*:\s*([a-zA-Z0-9()._\-\/ ]*?)\s*\[\s*via\s*:\s*(.*?)\s*\]\s*:\s*(.*?)\s*:\s|(.*?\S+)/g;
         var matches = Array.from(routes[i].matchAll(regexp));
         //console.log(matches[0][1]);    //2d array, i value should always be 0
-        arr[i][0]=matches[0][1]; //bus no
+        arr[i][0]=matches[0][1]; //bus no.
         arr[i][1]=matches[0][2]; //bus name
         var viaArray = matches[0][3].split(","); //split via list
+        timeArr.push(matches[0][4]); // time information
         for(var j=0;j<viaArray.length;j++){
             regexp = /\s*([0-9A-Za-z\/.\- ]*.)/g;  //get only 
             viaArray[j]=viaArray[j].replace(/ *\([^)]*\) */g, "");  //remove any term in brackets
@@ -83,10 +83,11 @@ function loadRoute() {
             //arr[i]=arr[i].concat(place[0][1].trim().toLowerCase());  //remove whitespaces from a place and convert all places to lowercase
             arr[i]=arr[i].concat(place[0][1].trim()); //remove whitespaces from a place
         }
-        imgArrTemp[i]=matches[1];
+
+        imgArrTemp[i]=matches[1]; // bus img
         if(imgArrTemp[i]) {
             //console.log(imgArrTemp[i][4]);
-            imgArr.push(imgArrTemp[i][4]);
+            imgArr.push(imgArrTemp[i][5]);
         }      
         else {
             imgArr.push("");
@@ -134,22 +135,8 @@ function loadRoute() {
     document.getElementById('places').innerHTML = options2;
     //document.write(uniquePlace);
 
-/*    //form the time array
-    for(var i=0;i<timeArr.length;i++) {
-        //regex to extract bus and times 
-        var regexp = /(^[A-Z0-9a-z.\/\-\s,\(\)]*?)\s*;\s*(.*)/g;
-        var matches = Array.from(timeArr[i].matchAll(regexp));
-        //console.log(matches[0][1]);    //2d array, i value should always be 0
-        busNames[i]=matches[0][1]; //bus name
-        busTimes[i]=matches[0][2]; //bus time
-    }
-    //add the bus names into datalist options
-    var options3 = '';
-    for (var i = 0; i < busNames.length; i++) 
-        options3 += '<option value="' + busNames[i] + '" />';
-    document.getElementById('timeList').innerHTML = options3;
-    console.log(busNames);
-    console.log(busTimes);  */
+    //form the time array
+    console.log(timeArr);
 }    
 
 //function to check same location with different names cases
@@ -213,6 +200,7 @@ function routeSearch() {
         var imgIndexArr = [ ];
         var Index=0;
         var str_flag=0;
+        var time_detail="";
         for(var i=0;i<arr.length;i++) {
             //absolute check by === , case insensitive search, add bus route numbers/names to the string str when match occurs 
             if( (busRoute.toLowerCase()===arr[i][0].toLowerCase())  || (busRoute.toLowerCase()===arr[i][0].replace('-', '').toLowerCase()) ) {
@@ -233,7 +221,8 @@ function routeSearch() {
                     else
                         str+=arr[i][j]+"->";
                 }        
-                str+="</td></tr>";    
+                str+="</td></tr>";
+                time_detail += timeArr[i] + "<br>";    
             }
         }
         if(str==="") {
@@ -241,52 +230,18 @@ function routeSearch() {
             document.getElementById("routeRes").innerHTML = "<br>No such routes found";        
         }
         else {
-           //console.log(imgArr.length);
+            //console.log(timeArr);
             imgIndexArr.splice(imgIndexArr.length - imgIndexArr.length/2,imgIndexArr.length);
             console.log(imgIndexArr);
             document.getElementById("busRoute").style.borderColor = "green";
+            str+="<tr><th>Timings</th><td>"+time_detail+"</td></tr>";
             for(var k=0;k<imgIndexArr.length;k++)
-                str+="<tr><th>Image:</th><td><img src="+imgArr[imgIndexArr[k]]+" alt=kbop style=height:200px;width:300px;></td></tr>"; 
-            //----TODO----//
-            str+="<tr><th>Timings</th><td>Coming Soon</td></tr>";
-            str+="<tr><th>Note</th><td> Buses models shown here are just for reference only, actual bus may appear different, please look at the board or ask conductor before boarding.<br>Buses may divert routes in unusual cases like traffic block, short termination, etc. Please ask conductor before boarding.</td></tr></table>";
+                str+="<tr><th>Image:</th><td><img src="+imgArr[imgIndexArr[k]]+" alt=kbop style=height:100px;width:150px;></td></tr>"; 
+            str+="<tr><th>Note</th><td> Buses models shown here are just for reference only, actual may vary, please look at board or ask conductor before boarding.<br>Buses may divert routes in unusual cases like traffic block, short termination, etc. Please ask conductor before boarding.<br>Timings shown here are regular ones and might vary due to various circumstances.</td></tr></table>";
             document.getElementById("routeRes").innerHTML = "<br>"+str;
         }
     }   
 }  
-
-/* //search time
-function timeSearch() {
-    document.getElementById("time").style.borderWidth = "medium";
-    if(document.getElementById("time").value==="") {
-        document.getElementById("timeRes").innerHTML = "<br>No routes number entered";
-        document.getElementById("time").style.borderColor = "red";
-    }
-    else {
-        document.getElementById("time").style.borderStyle = "solid";
-        var time=document.getElementById("time").value.trim();
-        var str="";
-        for(var i=0;i<timeArr.length;i++) {
-            //absolute check by === , case insensitive search, add bus route numbers/names to the string str when match occurs 
-            if( (time.toLowerCase()===busNames[i].toLowerCase())  || (time.toLowerCase()===busNames[i].replace('-', '').toLowerCase()) ) {
-                //autocorrect if not properly entered
-                if ( time.toLowerCase()!=busNames[i].toLowerCase() ) 
-                    document.getElementById("time").value=busNames[i];
-                str+="<b>"+busNames[i]+"</b> : "+busTimes[i];
-            }
-        }
-        if(str==="") {
-            document.getElementById("time").style.borderColor = "red";
-            document.getElementById("timeRes").innerHTML = "<br>No such routes found";        
-        }
-        else {
-            document.getElementById("time").style.borderColor = "green";
-            str+="<br><br><b>&#9658;Note:</b>Times are in 24hrs format. Times may vary due to various reasons, please contact SBSTC Depot helpline before availing.<br>";
-            //str+="<br><b>&#9658;Note:</b> Buses models shown here are just for reference only, actual bus may appear different, please look at the board or ask conductor before boarding.<br>";
-            document.getElementById("timeRes").innerHTML = "<br>"+str;
-        }
-    }   
-}  */
 
 
 //search as per location
@@ -505,10 +460,6 @@ function reset(){
     document.getElementById("des").style.borderWidth = "thin";
     document.getElementById("src").style.borderColor = "black";
     document.getElementById("des").style.borderColor = "black";
-    /*document.getElementById("time").value="";
-    document.getElementById("time").style.borderWidth = "thin";
-    document.getElementById("time").style.borderColor = "black";
-    document.getElementById("timeRes").innerHTML="";*/
 }
 
 //night/day mode switch function
@@ -525,8 +476,6 @@ function lightdark(){
         document.getElementById("src").style.color= "white";
         document.getElementById("des").style.color= "white";
         document.getElementById("loc").style.color= "white";
-       /* document.getElementById("time").style.color= "white";
-        document.getElementById("time").style.backgroundColor= "#757575";*/
         document.getElementById("busRoute").style.color= "white";
         document.getElementsByClassName("modal-content")[0].style.backgroundColor="#585858";
         lightFlag=0;
@@ -542,8 +491,6 @@ function lightdark(){
         document.getElementById("src").style.color= "black";
         document.getElementById("des").style.color= "black";
         document.getElementById("loc").style.color= "black";
-        /*document.getElementById("time").style.color= "black";
-        document.getElementById("time").style.backgroundColor= "white"; */
         document.getElementById("busRoute").style.color= "black";
         document.getElementsByClassName("modal-content")[0].style.backgroundColor="white";
         lightFlag=1;
