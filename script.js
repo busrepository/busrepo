@@ -306,6 +306,40 @@ function locSearch() {
     }
 }
 
+function srcdesSearch() {
+    if (document.getElementById("sdv").checked == false) {
+        sdSearch();
+    } else {
+        sdvSearch();
+    }
+}
+
+function sdvChange() {
+    document.getElementById("sdRes1").innerHTML="";
+    document.getElementById("sdRes2").innerHTML="";
+    document.getElementById("sdRes").innerHTML="";
+    document.getElementById("via").value="";
+    document.getElementById("src").style.borderWidth = "thin";
+    document.getElementById("des").style.borderWidth = "thin";
+    document.getElementById("via").style.borderWidth = "thin";
+    document.getElementById("src").style.borderColor = "black";
+    document.getElementById("des").style.borderColor = "black";
+    document.getElementById("via").style.borderColor = "black";
+    if (document.getElementById("sdv").checked == true) {
+        document.getElementById("vialabel").style.display = "block";
+        document.getElementById("via").style.display = "block";
+        document.getElementById("flip1").style.display = "block";
+        document.getElementById("flip2").style.display = "block";
+        document.getElementById("flip").style.display = "none";
+    } else {
+        document.getElementById("vialabel").style.display = "none";
+        document.getElementById("via").style.display = "none";
+        document.getElementById("flip1").style.display = "none";
+        document.getElementById("flip2").style.display = "none";
+        document.getElementById("flip").style.display = "block";
+    }
+}
+
 //as per source dest info
 function sdSearch() {
     document.getElementById("src").style.borderWidth = "medium";
@@ -435,6 +469,249 @@ function sdSearch() {
     }   
 }
 
+
+
+function sdvSearch() {
+    document.getElementById("src").style.borderWidth = "medium";
+    document.getElementById("via").style.borderWidth = "medium";
+    document.getElementById("des").style.borderWidth = "medium";
+    var src=document.getElementById("src").value.trim().toLowerCase();
+    var via=document.getElementById("via").value.trim().toLowerCase();
+    var des=document.getElementById("des").value.trim().toLowerCase();
+    src=replaceLocAlias(src);
+    via=replaceLocAlias(via);
+    des=replaceLocAlias(des);
+    if(src==="" || via==="" || des==="") {
+        document.getElementById("sdRes1").innerHTML="<br>Enter all fields";
+        if (src ==="")
+            document.getElementById("src").style.borderColor = "red";
+        else
+            document.getElementById("src").style.borderColor = "black";
+        if (via ==="")
+            document.getElementById("via").style.borderColor = "red";
+        else
+            document.getElementById("via").style.borderColor = "black";
+        if (des ==="")
+            document.getElementById("des").style.borderColor = "red";
+        else
+            document.getElementById("des").style.borderColor = "black";
+    }   
+    else if (src == via || des == via) {
+        document.getElementById("sdRes1").innerHTML="<br>Both source/destination and via cannot be same";
+    }
+    else {    
+        var flag=0;
+        var srcFlag=0;
+        var viaFlag=0;
+        var busArray = [ ];
+        var comp1,compHighest1=0,comp2,compHighest2=0;
+        //get the highest value of matching (compHighest1) between the entered source location (src) and all places available
+        for (var i = 0, l1 = arr.length; i < l1; i++) {
+            for (var j = 2, l2 = arr[i].length; j < l2; j++) {
+                comp1 = similarity(arr[i][j],src);
+                if(comp1>compHighest1)
+                    compHighest1 = comp1;
+            }
+        }      
+        //get the highest value of matching (compHighest2) between the entered destination location (des) and all places available
+        for (var i = 0, l1 = arr.length; i < l1; i++) {
+            for (var j = 2, l2 = arr[i].length; j < l2; j++) {
+                comp2 = similarity(arr[i][j],via);
+                if(comp2>compHighest2)
+                    compHighest2 = comp2;
+            }
+        }
+        //set src and des flags if the entered src and des are valid locations 
+        if(compHighest1>=0.85)
+            srcFlag=1;
+        if(compHighest2>=0.85)
+            viaFlag=1; 
+
+        // run loop again for finding the match
+        for (var i = 0, l1 = arr.length; i < l1; i++) {
+            for (var j = 2, l2 = arr[i].length; j < l2; j++) {
+                //if highest match compHighest1==1 means exact match with entered source value, therfore absolute check can be done using ===, set Flag=1 is hit occurs
+                if(compHighest1==1) {
+                    if(arr[i][j].toLowerCase()===src.toLowerCase()) {
+                        flag=1;
+                        document.getElementById("src").value=arr[i][j];
+                    }
+                }
+                //if not 1 then do approximate match and auto correction, set Flag=1 is hit occurs
+                else {
+                    var sim = similarity(arr[i][j],via);
+                    if(sim>=0.85 && sim<1) {
+                        flag=1;
+                        document.getElementById("via").value=arr[i][j];
+                    }
+                }
+
+                //if highest match compHighest2==1 means exact match with entered destination value, therfore absolute check can be done using ===
+                // if Flag==1, ie, if it has hit src before, then push that route no./name into array
+                if(compHighest2==1) {
+                    if( (arr[i][j].toLowerCase()===via.toLowerCase()) && flag==1) {
+                        busArray.push(arr[i][0]);
+                        flag=0;
+                        document.getElementById("via").value=arr[i][j];
+                    }
+                }
+                //if not 1 then do approximate match and auto correction, set srcFlag=1 is hit occurs
+                else {
+                    var sim = similarity(arr[i][j],via);
+                    if(sim>=0.85 && sim<1 && flag==1) {
+                        busArray.push(arr[i][0]);
+                        flag=0;
+                        document.getElementById("via").value=arr[i][j];
+                    }
+                }
+            }
+            flag=0;
+        }
+
+        if(busArray.length!=0) {
+            var str=""
+            for(var i=0;i<busArray.length;i++) {
+                if(i==busArray.length-1)
+                    str+=busArray[i]+". ";
+                else    
+                    str+=busArray[i]+", ";   
+            }
+            str = "<b>Available buses from Source to Via:</b> " + str; 
+            document.getElementById("sdRes1").innerHTML="<br>"+str;
+            document.getElementById("src").style.borderColor = "green";
+            document.getElementById("via").style.borderColor = "green";
+        }
+        else {
+            if(srcFlag==0 && viaFlag==0) {
+                document.getElementById("src").style.borderColor = "red";
+                document.getElementById("via").style.borderColor = "red";
+                document.getElementById("sdRes1").innerHTML="<br>Both source & via location is incorrect. Check spelling, otherwise no such location exists";
+            }
+            else if(srcFlag==0 && viaFlag==1) {
+                document.getElementById("src").style.borderColor = "red";
+                document.getElementById("via").style.borderColor = "black";
+                document.getElementById("sdRes1").innerHTML="<br>Source location is incorrect. Check spelling, otherwise no such location exists";
+            }
+            else if(srcFlag==1 && viaFlag==0) {
+                document.getElementById("src").style.borderColor = "black";
+                document.getElementById("via").style.borderColor = "red";
+                document.getElementById("sdRes1").innerHTML="<br>Via location is incorrect. Check spelling, otherwise no such location exists";
+            }
+            else {
+                document.getElementById("src").style.borderColor = "black";
+                document.getElementById("via").style.borderColor = "black";
+                document.getElementById("sdRes1").innerHTML="<br>No direct bus found between the Source and Via";
+            }
+        }
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        flag=0;
+        viaFlag=0;
+        var desFlag=0;
+        busArray = [ ];
+        compHighest1=0;
+        compHighest2=0;
+        //get the highest value of matching (compHighest1) between the entered source location (src) and all places available
+        for (var i = 0, l1 = arr.length; i < l1; i++) {
+            for (var j = 2, l2 = arr[i].length; j < l2; j++) {
+                comp1 = similarity(arr[i][j],via);
+                if(comp1>compHighest1)
+                    compHighest1 = comp1;
+            }
+        }      
+        //get the highest value of matching (compHighest2) between the entered destination location (des) and all places available
+        for (var i = 0, l1 = arr.length; i < l1; i++) {
+            for (var j = 2, l2 = arr[i].length; j < l2; j++) {
+                comp2 = similarity(arr[i][j],des);
+                if(comp2>compHighest2)
+                    compHighest2 = comp2;
+            }
+        }
+        //set src and des flags if the entered src and des are valid locations 
+        if(compHighest1>=0.85)
+            viaFlag=1;
+        if(compHighest2>=0.85)
+            desFlag=1; 
+
+        // run loop again for finding the match
+        for (var i = 0, l1 = arr.length; i < l1; i++) {
+            for (var j = 2, l2 = arr[i].length; j < l2; j++) {
+                //if highest match compHighest1==1 means exact match with entered source value, therfore absolute check can be done using ===, set Flag=1 is hit occurs
+                if(compHighest1==1) {
+                    if(arr[i][j].toLowerCase()===via.toLowerCase()) {
+                        flag=1;
+                        document.getElementById("via").value=arr[i][j];
+                    }
+                }
+                //if not 1 then do approximate match and auto correction, set Flag=1 is hit occurs
+                else {
+                    var sim = similarity(arr[i][j],des);
+                    if(sim>=0.85 && sim<1) {
+                        flag=1;
+                        document.getElementById("des").value=arr[i][j];
+                    }
+                }
+
+                //if highest match compHighest2==1 means exact match with entered destination value, therfore absolute check can be done using ===
+                // if Flag==1, ie, if it has hit src before, then push that route no./name into array
+                if(compHighest2==1) {
+                    if( (arr[i][j].toLowerCase()===des.toLowerCase()) && flag==1) {
+                        busArray.push(arr[i][0]);
+                        flag=0;
+                        document.getElementById("des").value=arr[i][j];
+                    }
+                }
+                //if not 1 then do approximate match and auto correction, set srcFlag=1 is hit occurs
+                else {
+                    var sim = similarity(arr[i][j],des);
+                    if(sim>=0.85 && sim<1 && flag==1) {
+                        busArray.push(arr[i][0]);
+                        flag=0;
+                        document.getElementById("des").value=arr[i][j];
+                    }
+                }
+            }
+            flag=0;
+        }
+
+        if(busArray.length!=0) {
+            var str=""
+            for(var i=0;i<busArray.length;i++) {
+                if(i==busArray.length-1)
+                    str+=busArray[i]+". ";
+                else    
+                    str+=busArray[i]+", ";   
+            }
+            str = "<b>Available buses from Via to Destination:</b> " + str; 
+            document.getElementById("sdRes2").innerHTML="<br>"+str;
+            document.getElementById("via").style.borderColor = "green";
+            document.getElementById("des").style.borderColor = "green";
+        }
+        else {
+            if(viaFlag==0 && desFlag==0) {
+                document.getElementById("via").style.borderColor = "red";
+                document.getElementById("des").style.borderColor = "red";
+                document.getElementById("sdRes2").innerHTML="<br>Both via & destination location is incorrect. Check spelling, otherwise no such location exists";
+            }
+            else if(viaFlag==0 && desFlag==1) {
+                document.getElementById("via").style.borderColor = "red";
+                document.getElementById("des").style.borderColor = "black";
+                document.getElementById("sdRes2").innerHTML="<br>Via location is incorrect. Check spelling, otherwise no such location exists";
+            }
+            else if(viaFlag==1 && desFlag==0) {
+                document.getElementById("via").style.borderColor = "black";
+                document.getElementById("des").style.borderColor = "red";
+                document.getElementById("sdRes2").innerHTML="<br>Destination location is incorrect. Check spelling, otherwise no such location exists";
+            }
+            else {
+                document.getElementById("via").style.borderColor = "black";
+                document.getElementById("des").style.borderColor = "black";
+                document.getElementById("sdRes2").innerHTML="<br>No direct bus found between the Via and Destination";
+            }
+        }
+
+    }   
+}
+
 //flip src dest
 function flip() {
     var src=document.getElementById("src").value;
@@ -443,13 +720,30 @@ function flip() {
     document.getElementById("des").value=src;
 }
 
+function flip1() {
+    var src=document.getElementById("src").value;
+    var via=document.getElementById("via").value;
+    document.getElementById("src").value=via;
+    document.getElementById("via").value=src;
+}
+
+function flip2() {
+    var via=document.getElementById("via").value;
+    var des=document.getElementById("des").value;
+    document.getElementById("via").value=des;
+    document.getElementById("des").value=via;
+}
+
 //reset everything
 function reset(){
     document.getElementById("src").value="";
     document.getElementById("des").value="";
+    document.getElementById("via").value="";
     document.getElementById("busRoute").value="";
     document.getElementById("loc").value="";
     document.getElementById("sdRes").innerHTML="";
+    document.getElementById("sdRes1").innerHTML="";
+    document.getElementById("sdRes2").innerHTML="";
     document.getElementById("routeRes").innerHTML="";
     document.getElementById("locRes").innerHTML="";
     document.getElementById("busRoute").style.borderColor = "black";
@@ -458,8 +752,10 @@ function reset(){
     document.getElementById("loc").style.borderWidth = "thin";
     document.getElementById("src").style.borderWidth = "thin";
     document.getElementById("des").style.borderWidth = "thin";
+    document.getElementById("via").style.borderWidth = "thin";
     document.getElementById("src").style.borderColor = "black";
     document.getElementById("des").style.borderColor = "black";
+    document.getElementById("via").style.borderColor = "black";
 }
 
 //night/day mode switch function
@@ -471,10 +767,12 @@ function lightdark(){
         document.getElementById("bodyid").style.border= "15px solid #1F1B24";
         document.getElementById("src").style.backgroundColor= "#757575";
         document.getElementById("des").style.backgroundColor= "#757575";
+        document.getElementById("via").style.backgroundColor= "#757575";
         document.getElementById("loc").style.backgroundColor= "#757575";
         document.getElementById("busRoute").style.backgroundColor= "#757575";
         document.getElementById("src").style.color= "white";
         document.getElementById("des").style.color= "white";
+        document.getElementById("via").style.color= "white";
         document.getElementById("loc").style.color= "white";
         document.getElementById("busRoute").style.color= "white";
         document.getElementsByClassName("modal-content")[0].style.backgroundColor="#585858";
@@ -486,10 +784,12 @@ function lightdark(){
         document.getElementById("bodyid").style.border= "15px solid white";
         document.getElementById("src").style.backgroundColor= "white";
         document.getElementById("des").style.backgroundColor= "white";
+        document.getElementById("via").style.backgroundColor= "white";
         document.getElementById("loc").style.backgroundColor= "white";
         document.getElementById("busRoute").style.backgroundColor= "white";
         document.getElementById("src").style.color= "black";
         document.getElementById("des").style.color= "black";
+        document.getElementById("via").style.color= "black";
         document.getElementById("loc").style.color= "black";
         document.getElementById("busRoute").style.color= "black";
         document.getElementsByClassName("modal-content")[0].style.backgroundColor="white";

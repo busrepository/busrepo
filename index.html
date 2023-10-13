@@ -53,13 +53,15 @@
                         <li>If no direct route exists, then the textboxes will glow <b style="color:black;">black</b>.</li>
                     </ul> 
                     On incorrect location entry, i.e., if source or destination location incorrect or if no bus ply through either of them, then textbox will glow <b style="color:red;">red</b>.
-                        <br>Both fields needs to be entered to get a result.</li> 
+                        <br>Both fields needs to be entered to get a result. 
+                        <br>One can also add via for search by toggling the via switch. Then all 3 fields should be entered.
+                        </li>
                         <li><b>Search a bus route:</b><br>
                         Enter a bus route (eg, L238, Barasat Baruipur) hit search and full route info will be shown, both for up and down. Textbox will glow <b style="color:green;">green</b>. <br>If route number or name is incorrect, it will glow <b style="color:red;">red</b>. 
                         </li>
                         <li><b>Search as per a particular location:</b><br>
                             Enter a location (eg, Baguiati, Tollygunge) hit search and all the buses that run through that location will be shown. Textbox will glow  <b style="color:green;">green</b>. You can then search for individual bus to get complete route info.<br>If location incorrect or no buses ply from that location, it will glow  <b style="color:green;">red</b>.<br><br>
-                        </li>
+                        </li>   
                     </ol>
                      For every field, there is autocorrect feature, to a certain extent, as well as a list will appear, as you type. You can either choose from the list or type of your own. 
                      <br>Press <i>Reset All</i> button to clear every fields and set it to default.
@@ -105,6 +107,12 @@
     
     <fieldset class="border p-2">
         <legend class="float-none w-auto p-2"><h4><img src="dir.jpg" style="height:25px;width:35px;">Search Buses by Source and Destination<img src="dir.jpg" style="height:25px;width:35px;"></h4></legend>
+        Add Via:
+        <label class="switch">
+            <input type="checkbox" id="sdv" onchange="sdvChange()">
+            <span class="slider round"></span>
+        </label>
+        <br><br>
         <label for="cars">Select Source:</label>
             <input list="places" class="form-control" id="src" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
             <datalist id="places"></datalist>     
@@ -112,13 +120,26 @@
         <div style="display:flex;justify-content:center;align-items:center;height:5px;"> 
             <input type="button" value="Flip" id="flip" onclick="flip()" style="border-radius:80%;padding:10px;border: none;">
         </div>
+        <div style="display:flex;justify-content:center;align-items:center;height:5px;"> 
+            <input type="button" value="Flip" id="flip1" onclick="flip1()" style="border-radius:80%;padding:10px;border:none;display:none;">
+        </div>
+        <br>
+        <label for="cars" style="display:none;" id="vialabel">Select Via:</label>
+        <input list="places" class="form-control" id="via" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)" style="display:none;">
+            <datalist id="places"></datalist> 
+        <br><br>    
+        <div style="display:flex;justify-content:center;align-items:center;height:5px;"> 
+            <input type="button" value="Flip" id="flip2" onclick="flip2()" style="border-radius:80%;padding:10px;border:none;display:none;">
+        </div>
         <br>
         <label for="cars">Select Destination:</label>
             <input list="places" class="form-control" id="des" aria-describedby="emailHelp" placeholder="Type a location, e.g.,Ultadanga,Ruby" onfocus="noGlow(this.id)">
             <datalist id="places"></datalist>     
         <br>
-        <input type="button" value="Search for Buses" id="sd" onclick="sdSearch()">
+        <input type="button" value="Search for Buses" id="sd" onclick="srcdesSearch()">
         <br><p id = "sdRes"></p>
+        <p id = "sdRes1"></p>
+        <p id = "sdRes2"></p>
     </fieldset>  
     <br><br>
     <fieldset class="border p-2">
@@ -148,7 +169,7 @@
     <a href="https://www.instagram.com/kolbusopedia/?hl=en" target="_blank" class="fa fa-instagram"></a>
     <a href="https://www.kooapp.com/profile/kolbusopedia" target="_blank" ><img class="img-fluid" src="https://images.squarespace-cdn.com/content/v1/584fbae3e6f2e1c321b372b8/1628850911874-X779V6OFN5GTU9SF7VQS/12.Koo_Bird_Circle_Yellow.png?format=1000w" style="border-radius:50%;height:3%;width:3%;"></a>
     <br><footer>For reporting any bugs or any suggestions, please mail us at <a href="mailto:kolbusopedia@gmail.com"><i>kolbusopedia@gmail.com</i></a></footer>
-    <br><div title="Now bus timings, images are added in bus search, NBSTC & SBSTC added, alias places adding, Timing are adding"><i>Ver 1.6</i>  <b>&#169; Developed by Kolkata Bus-O-Pedia</b></div> 
+    <br><div title="Via added.Now bus timings, images are added in bus search, NBSTC & SBSTC added, alias places adding, Timing are adding"><i>Ver 1.7</i>  <b>&#169; Developed by Kolkata Bus-O-Pedia</b></div> 
 </body>
 
     <script src="script.js"></script>
