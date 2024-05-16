@@ -237,7 +237,7 @@ function routeSearch() {
             str+="<tr><th>Timings</th><td>"+time_detail+"</td></tr>";
             for(var k=0;k<imgIndexArr.length;k++)
                 str+="<tr><th>Image:</th><td><img src="+imgArr[imgIndexArr[k]]+" alt=kbop style=height:100px;width:150px;></td></tr>"; 
-            str+="<tr><th>Note</th><td> Buses models shown here are just for reference only, actual may vary, please look at board or ask conductor before boarding.<br>Buses may divert routes in unusual cases like traffic block, short termination, etc. Please ask conductor before boarding.<br>Timings shown here are regular ones and might vary due to various circumstances.</td></tr></table>";
+            str+="<tr><th>Note</th><td> Buses models shown here are just for reference only, actual may vary, please look at board or ask conductor before boarding. Image credits to respective owners.<br>Buses may divert routes in unusual cases like traffic block, short termination, etc. Please ask conductor before boarding.<br>Timings shown here are regular ones and might vary due to various circumstances.</td></tr></table>";
             document.getElementById("routeRes").innerHTML = "<br>"+str;
         }
     }   
