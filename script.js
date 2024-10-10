@@ -12,7 +12,7 @@ var timeArr = [ ];
 //to load kolkata zone at first load by default
 routes = routes1;
 //timeArr = time1;
-loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt","TCS Gitobitan","Panihati","Candor Techspace","RDB Cinema"); //additional extra place names, which have different names but same location, pass them as argument 
+loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt","TCS Gitobitan","Panihati","Candor Techspace","RDB Cinema","PG"); //additional extra place names, which have different names but same location, pass them as argument 
 var news= news1;
 document.getElementById("update").innerHTML=news;  //load news
 window.scrollTo(0, 0); 
@@ -26,7 +26,7 @@ function loadRouteList() {
         routes = routes1;
         //timeArr = time1;
         //additional extra place names, which have different names but same location, pass them as argument in loadRoute function
-        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt","TCS Gitobitan","Panihati","Candor Techspace","RDB Cinema"); 
+        loadRoute("Bidhannagar Road","Exide More","Dharmatala","Sector V","Mint","CMRI Hospital","Yuva Bharati Kirangan","Biswa Bangla Gate","Hyatt","TCS Gitobitan","Panihati","Candor Techspace","RDB Cinema","PG"); 
         //to get the news updates
         var news= news1;
         document.getElementById("update").innerHTML=news;
@@ -145,7 +145,7 @@ function replaceLocAlias(loc){
         loc = "Ultadanga";
         return loc;
     }
-    else if(loc==="exide more"){
+    else if(loc==="exide more" || loc==="PG"){
         loc = "Rabindra Sadan";
         return loc;
     }    
