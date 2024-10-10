@@ -145,7 +145,7 @@ function replaceLocAlias(loc){
         loc = "Ultadanga";
         return loc;
     }
-    else if(loc==="exide more" || loc==="PG"){
+    else if(loc==="exide more" || loc==="pg"){
         loc = "Rabindra Sadan";
         return loc;
     }    
