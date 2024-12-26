@@ -34,8 +34,20 @@ function loadRouteList() {
         reset(); 
         alert("Routes Loaded");
     } 
-    //NBSTC
+    //Bardhaman Nadia
     else if (document.getElementById("sel1").selectedIndex == "1") {
+        routes = routes4;
+        //timeArr = time2;
+        loadRoute("Dharmatala","Bidhannagar Road");
+        //to get the news updates
+        var news= news2; 
+        document.getElementById("update").innerHTML=news; 
+        window.scrollTo(0, 0); 
+        reset();
+        alert("Routes Loaded");
+    }     
+    //NBSTC
+    else if (document.getElementById("sel1").selectedIndex == "2") {
         routes = routes2;
         //timeArr = time2;
         loadRoute("Dharmatala","Bidhannagar Road");
@@ -47,7 +59,7 @@ function loadRouteList() {
         alert("Routes Loaded");
     } 
     //SBSTC
-    else if (document.getElementById("sel1").selectedIndex == "2") {
+    else if (document.getElementById("sel1").selectedIndex == "3") {
         routes = routes3;
         //timeArr = time3;
         loadRoute("Dharmatala","Bidhannagar Road");
