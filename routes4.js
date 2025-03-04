@@ -1,5 +1,5 @@
-var routes4 = [ 
-
+var routes4 = [ ];
+/*
 //Nabadwip To Asansol & Asansol To Nabadwip via Satgachia
 "Taraknath Nabadwip to Asansol 0035: Nabadwip to Asansol [via: Nabadwip, Hematpur More, Nadanghat More, Samudragarh, Dhatrigram, Madhupur, Bulbulitala, Bohar, Satgachia, Paharhati, Nabastha, Hatgobindopur, Barddhaman station, Golapbag, Barddhaman Nawabhat Bus Stand, Galsi, Budbud, Panagarh, Muchipara, Durgapur City Centre, Andal More, Raniganj Punjabi More, Kalipahari More, Asansol] : Nabadwip Dep.  – 4.20 am, Satgachia Dep. – 5.40 am, Barddhaman Dep. – 6.55 am, Durgapur City Center Dep. – 8.20 am, Asansol Arr. – 9.20 am,: ",
 "Taraknath Nabadwip to Asansol 0035: Asansol To Nabadwip [via: Asansol, Kalipahari More, Raniganj Punjabi More, Andal More, Durgapur City Centre, Muchipara, Panagarh, Budbud, Galsi, Barddhaman Nawabhat Bus Stand, Golapbag, Barddhaman station, Hatgobindopur, Nabastha, Paharhati, Satgachia, Bohar, Bulbulitala, Madhupur, Dhatrigram, Samudragarh, Nadanghat More, Hematpur More, Nabadwip] : Asansol Dep. – 10.00 am, Durgapur City Center Dep. – 11.10 pm, Barddhaman Dep. – 1.10 pm, Satgachia Dep. – 2.40 pm, Nabadwip Arr. – 3.45 pm,: ",
@@ -63,5 +63,5 @@ var routes4 = [
 //Nabadwip To Tarapith & Tarapith To Nabadwip
 "Raju Nabadwip to Tarapith 1165:Nabadwip to Tarapith [via: Nabadwip, Hematpur More, Shrirampur More, Parulia Bazar, Purbasthali, Chhatni, Dainhat More, Katwa, Ketugram, Pachundi, Nirol, Komarpur, Kandra, Futisanko, Kirnahar, Labhpur, Chouhatta, Ahmadpur, Purandapur, Suri, Mohammad Bazar, Rampurhat, Tarapith] : Nabadwip Dep. – 4.40 am, Katwa Dep.- 6.10 am, Kirnahar Dep.- 7.40 am, Labhpur Dep. – 8.10 am, Ahmadpur Dep.- 8.40 am, Suri Dep. – 9.20 am, Mohammad Bazar Dep. – 9.45 am, Rampurhat Dep.- 10.10 am, Tarapith Arr. – 10.50 am,: ",
 "Raju Nabadwip to Tarapith 1165:Tarapith to Nabadwip [via: Tarapith, Rampurhat, Mohammad Bazar, Suri, Purandapur, Ahmadpur, Chouhatta, Labhpur, Kirnahar, Futisanko, Kandra, Komarpur, Nirol, Pachundi, Ketugram, Katwa, Dainhat More, Chhatni, Purbasthali, Parulia Bazar, Shrirampur More, Hematpur More, Nabadwip] : Tarapith Dep. – 12.00 pm, Rampurhat Dep.- 12.40 pm, Mohammad Bazar Dep. – 1.30 pm, Suri Dep. – 2.00 pm, Ahmadpur Dep.- 2.45 pm, Labhpur Dep. – 3.20 pm, Kirnahar Dep.- 3.50 pm, Katwa Dep.- 5.20 pm, Nabadwip Arr. – 6.05 pm,: "
+*/
 
-];
