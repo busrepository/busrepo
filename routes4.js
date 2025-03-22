@@ -1,4 +1,4 @@
-var routes4 = [ ];
+var routes4 = [
 
 //Nabadwip To Asansol & Asansol To Nabadwip via Satgachia
 "Taraknath Nabadwip to Asansol 0035:Nabadwip to Asansol [via: Nabadwip, Hematpur More, Nadanghat More, Samudragarh, Dhatrigram, Madhupur, Bulbulitala, Bohar, Satgachia, Paharhati, Nabastha, Hatgobindopur, Barddhaman station, Golapbag, Barddhaman Nawabhat Bus Stand, Galsi, Budbud, Panagarh, Muchipara, Durgapur City Centre, Andal More, Raniganj Punjabi More, Kalipahari More, Asansol] : Nabadwip Dep.  – 4.20 am, Satgachia Dep. – 5.40 am, Barddhaman Nawabhat Bus Stand Dep. – 6.55 am, Durgapur City Center Dep. – 8.20 am, Asansol Arr. – 9.20 am,: ",
@@ -531,3 +531,4 @@ var routes4 = [ ];
 "Tara Maa Tarakeshwar To Silda 6443:Tarakeshwar To Silda [via: Tarakeshwar, Chapadanga, Harinkhola, Kable, Arambagh, Kalipur, Goghat, Kamarpukur, Tarahat More, Pandugram, Shantipur, Krishnaganj, Chamkaitala, Uttarbill, Bostom More, Fulberia, Shyamnagar, Dhadika, Garhbeta, Amlagora, Radhanagar, Hoomgarh, Amlashuli, Dubrajpur, Bikrampur, P. More, Raipur, Motgoda, Fulkushma, Silda] : Tarakeswar Dep. – 4.30 am,: ",
 "Tara Maa Tarakeshwar To Silda 6443:Silda To Tarakeshwar [via: Silda, Fulkushma, Motgoda, Raipur, P. More, Bikrampur, Dubrajpur, Amlashuli, Hoomgarh, Radhanagar, Amlagora, Garhbeta, Dhadika, Shyamnagar, Fulberia, Bostom More, Uttarbill, Chamkaitala, Krishnaganj, Shantipur, Pandugram, Tarahat More, Kamarpukur, Goghat, Kalipur, Arambagh, Kable, Harinkhola, Chapadanga, Tarakeshwar] : Silda Dep. – 11.35 am,: "
 
+];
